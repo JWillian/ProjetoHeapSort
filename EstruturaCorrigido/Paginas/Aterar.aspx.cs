@@ -71,7 +71,7 @@ public partial class Paginas_Aterar : System.Web.UI.Page
     protected void ddlCpf_SelectedIndexChanged(object sender, EventArgs e)
     {
 
-        DataSet ds = cli_clienteDB.SelectbyId(Convert.ToInt32(ddlCpf.SelectedValue));
+        DataSet ds = cli_clientefinalDB.SelectById(Convert.ToInt32(ddlCpf.SelectedValue));
 
         if (ds.Tables[0].Rows.Count == 0)
         {

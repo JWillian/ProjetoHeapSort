@@ -47,6 +47,47 @@ public class cli_clientefinalDB
     }
 
 
+    public static DataSet SelectById(int id)
+    {
+        DataSet ds = new DataSet();
+        IDbConnection objConexao;
+        IDbCommand objComando;
+        IDataAdapter objDataAdapter;
+
+        objConexao = Mapped.Connection();
+
+        objComando = Mapped.Command("select " +
+        "cli.cli_id, " +
+        "cli.cli_nome, " +
+        "cli.cli_email, " +
+        "cli.cli_cpf, " +
+        "cli.cli_idade, " +
+        "cid.cid_nome, " +
+        "tpu.tpu_descricao, " +
+        "pla.pla_nome, " +
+        "pla.pla_qtd_dias, " +
+        "usu.usu_id, " +
+        "usu.usu_login, " +
+        "usu.usu_senha " +
+        "from cli_cliente cli " +
+        "inner join usu_usuario usu on(cli.usu_id = usu.usu_id) " +
+        "inner join ctr_controle ctr on(usu.usu_id = ctr.usu_id) " +
+        "inner join pla_plano pla on(pla.pla_id = ctr.pla_id) " +
+        "inner join tpu_tipo_usuario tpu on(tpu.tpu_id = usu.tpu_id) " +
+        "inner join cid_cidade cid on(cid.cid_id = usu.cid_id) " +
+        "where cli_id = ?cli_id", objConexao);
+
+        objComando.Parameters.Add(Mapped.Parametro("?cli_id", id)); //é o id que esta sendo mandado
+
+        objDataAdapter = Mapped.Adapter(objComando);
+        objDataAdapter.Fill(ds);
+        objConexao.Close();
+        objConexao.Dispose();
+        objComando.Dispose();
+        return ds;
+    }
+
+
     public static int Update(cli_clientefinal cliente)
     {
         int retorno = 0;
