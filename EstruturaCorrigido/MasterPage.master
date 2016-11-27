@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <link href="css/Estilo.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        body {
+            font-family: Calibri;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="container" id="cabecalho">
+        <div class="row">
+
+            <div class="row">
+                <h3 style="font-family: Calibri; color: black; font-size: 33pt; margin-top: 12px; text-align: center">Heap Sort</h3>
+            </div>
+            <br />
+
+        </div>
+
+
+        <div class="col-lg-10 ">
+
+            <div class="row">
+
+                <div class="col-lg-2 col-md-2 col-sm-4" style="margin-bottom: 11px; margin-left: 10px;">
+                    <img src="../Imagens/arvore.png" style="width: 60px;" />
+
+                </div>
+                <div class="text-center">
+                    <div class="col-lg-1 col-md-2 col-sm-4">
+                        <h4 class="subtitulo">Adrison Freitas</h4>
+                    </div>
+                    <div class="col-lg-1 col-md-2  col-sm-4">
+                        <h4 class="subtitulo">Aline Ferraz</h4>
+                    </div>
+                    <div class="col-lg-1 col-md-2 col-sm-4">
+                        <h4 class="subtitulo">Ana Beatriz</h4>
+                    </div>
+                    <div class="col-lg-1 col-md-2 col-sm-4">
+                        <h4 class="subtitulo">Jonatas Willian</h4>
+                    </div>
+                    <div class="col-lg-1 col-md-2 col-sm-4">
+                        <h4 class="subtitulo">Luis Spinelli</h4>
+                    </div>
+
+                    <div class="col-lg-1 col-md-3 col-sm-4">
+                        <h4 class="subtitulo">Pedro Marcondes</h4>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-4" style="margin-left: 20px;margin-right: 10px;">
+                    <img src="../Imagens/arvore.png" style="width: 60px;" />
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </header>
+    <br />
+    <hr />
+    <section class="container">
+
+        <form id="form1" runat="server">
+            <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </form>
+    </section>
+
+    <hr />
+    <footer class="container">
+        <div class="text-center">
+            <address>
+                <h5>Grupo</h5>
+                <small>Todos os direitos reservados@2016</small>
+            </address>
+        </div>
+    </footer>
+</body>
+</html>
+
