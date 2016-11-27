@@ -51,4 +51,28 @@ public class ctr_controleDB
         objComando.Dispose();
         return ds;
     }
+
+    public static int Delete(int id)
+    {
+        int retorno = 0;
+        try
+        {
+            IDbConnection objConexao;
+            IDbCommand objCommand;
+            string sql = "delete from ctr_controle where usu_id = ?usu_id";
+            objConexao = Mapped.Connection();
+            objCommand = Mapped.Command(sql, objConexao);
+            objCommand.Parameters.Add(Mapped.Parametro("?usu_id", id));
+            objCommand.ExecuteNonQuery();
+            objConexao.Close();
+            objConexao.Dispose();
+            objCommand.Dispose();
+        }
+        catch (Exception e)
+        {
+
+            retorno = -2;
+        }
+        return retorno;
+    }
 }

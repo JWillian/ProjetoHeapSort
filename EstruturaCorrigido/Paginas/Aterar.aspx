@@ -13,7 +13,7 @@
             <div class="col-lg-6">
                 <br />
                 Cpf
-                <asp:DropDownList ID="ddlCpf" runat="server" CssClass="form-control" autopostback="true" OnSelectedIndexChange=""></asp:DropDownList>
+                <asp:DropDownList ID="ddlCpf" runat="server" CssClass="form-control" autopostback="true" OnSelectedIndexChange="ddlCpf_SelectedIndexChanged"></asp:DropDownList>
                <br />
                  Nome:
                 <asp:TextBox ID="txtNome" runat="server" CssClass="form-control"></asp:TextBox><br />

@@ -35,10 +35,6 @@ public partial class Paginas_Aterar : System.Web.UI.Page
             //Depois de tudo configurado, ele fixa o valor e o nome da cidade na DropDownList
             ddlPlano.DataBind();
             ddlPlano.Items.Insert(0, "Selecione");
-
-
-
-
         }
 
 
@@ -52,9 +48,6 @@ public partial class Paginas_Aterar : System.Web.UI.Page
 
     }
 
-
-
-
     //SELECT PLANO
     protected void ddlPlano_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -67,10 +60,6 @@ public partial class Paginas_Aterar : System.Web.UI.Page
         }
         else
         {
-
-
-
-
             txtQtdDias.Text = ds.Tables[0].Rows[0]["pla_qtd_dias"].ToString();
 
         }
@@ -90,7 +79,6 @@ public partial class Paginas_Aterar : System.Web.UI.Page
         }
         else
         {
-
             txtNome.Text = ds.Tables[0].Rows[0]["cli_nome"].ToString();
             txtEmail.Text = ds.Tables[0].Rows[0]["cli_email"].ToString();
             txtIdade.Text = ds.Tables[0].Rows[0]["cli_idade"].ToString();
@@ -100,15 +88,9 @@ public partial class Paginas_Aterar : System.Web.UI.Page
             txtQtdDias.Text = ds.Tables[0].Rows[0]["pla_qtd_dias"].ToString();
             txtLogin.Text = ds.Tables[0].Rows[0]["usu_login"].ToString();
             txtSenha.Text = ds.Tables[0].Rows[0]["usu_senha"].ToString();
-
-            
-
-
         }
 
     }
-
-
 
     protected void btnAlterar_Click(object sender, EventArgs e)
     {
@@ -156,7 +138,16 @@ public partial class Paginas_Aterar : System.Web.UI.Page
 
     protected void btnDeletar_Click(object sender, EventArgs e)
     {
-        switch (cli_clienteDB.Delete(Convert.ToInt32(ddlCpf.SelectedValue)))
+
+        DataSet dsCliente = cli_clienteDB.SelectbyId(Convert.ToInt32(ddlCpf.SelectedValue));
+
+        int usu_id = Convert.ToInt32(dsCliente.Tables[0].Rows[0]["usu_id"]);
+        int cli_id = Convert.ToInt32(dsCliente.Tables[0].Rows[0]["cli_id"]);
+
+        cli_clienteDB.Delete(cli_id);
+        ctr_controleDB.Delete(usu_id);
+
+        switch (usu_usuarioDB.Delete(usu_id))
         {
             case 0:
                 lblDeletar.Text = "<div class = 'alert-success alert text-center'>Registro Deletado</div>";

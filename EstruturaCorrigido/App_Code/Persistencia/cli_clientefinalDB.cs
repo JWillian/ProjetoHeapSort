@@ -10,11 +10,6 @@ using System.Web;
 /// </summary>
 public class cli_clientefinalDB
 {
-
-
-
-
-
     public static DataSet SelectClienteAll()
     {
         DataSet ds = new DataSet();
