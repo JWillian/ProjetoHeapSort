@@ -15,82 +15,40 @@ public class cli_clientefinalDB
 
 
 
-    public static List<cli_clientefinal> SelectClienteAll()
+    public static DataSet SelectClienteAll()
     {
-        List<cli_clientefinal> clientes = new List<cli_clientefinal>();
+        DataSet ds = new DataSet();
         IDbConnection objConexao;
-        IDbCommand objCommando;
-        string sql = "select ";
-        sql += "cli.cli_id, ";
-        sql += "cli.cli_nome, ";
-        sql += "cli.cli_email, ";
-        sql += "cli.cli_cpf, ";
-        sql += "cli.cli_idade, ";
-        sql += "cid.cid_nome, ";
-        sql += "tpu.tpu_descricao, ";
-        sql += "pla.pla_nome, ";
-        sql += "pla.pla_qtd_dias, ";
-        sql += "usu.usu_login, ";
-        sql += "usu.usu_senha ";
-        sql += "from usu_usuario usu ";
-        sql += "inner join cli_cliente cli on(cli.usu_id = usu.usu_id) ";
-        sql += "inner join ctr_controle ctr on(usu.usu_id = ctr.ctr_id) ";
-        sql += "inner join pla_plano pla on(pla.pla_id = ctr.pla_id) ";
-        sql += "inner join tpu_tipo_usuario tpu on(tpu.tpu_id = usu.tpu_id) ";
-        sql += "inner join cid_cidade cid on(cid.cid_id = usu.cid_id); ";
+        IDbCommand objComando;
+        IDataAdapter objDataAdapter;
 
         objConexao = Mapped.Connection();
-        objCommando = Mapped.Command(sql, objConexao);
-        IDataReader reader = objCommando.ExecuteReader();
-        while (reader.Read())
-        {
-            cli_clientefinal clifinal = new cli_clientefinal();
-            cli_cliente cli = new cli_cliente();
-            cid_cidade cidade = new cid_cidade();
-            pla_plano plano = new pla_plano();
-            tpu_tipo_usuario tipo = new tpu_tipo_usuario();
-            usu_usuario usuario = new usu_usuario();
-            ctr_controle controle = new ctr_controle();
 
+        objComando = Mapped.Command("select " +
+        "cli.cli_id, " +
+        "cli.cli_nome, " +
+        "cli.cli_email, " +
+        "cli.cli_cpf, " +
+        "cli.cli_idade, " +
+        "cid.cid_nome, " +
+        "tpu.tpu_descricao, " +
+        "pla.pla_nome, " +
+        "pla.pla_qtd_dias, " +
+        "usu.usu_login, " +
+        "usu.usu_senha " +
+        "from usu_usuario usu " +
+        "inner join cli_cliente cli on(cli.usu_id = usu.usu_id) " +
+        "inner join ctr_controle ctr on(usu.usu_id = ctr.ctr_id) " +
+        "inner join pla_plano pla on(pla.pla_id = ctr.pla_id) " +
+        "inner join tpu_tipo_usuario tpu on(tpu.tpu_id = usu.tpu_id) " +
+        "inner join cid_cidade cid on(cid.cid_id = usu.cid_id); ", objConexao);
 
-            cli.Cli_id = Convert.ToInt32(reader["cli.cli_id"]);
-            cli.Cli_nome = Convert.ToString(reader["cli.cli_nome"]);
-            cli.Cli_email = Convert.ToString(reader["cli.cli_email"]);
-            cli.Cli_cpf = Convert.ToString(reader["cli.cli_cpf"]);
-            cli.Cli_idade = Convert.ToInt32(reader["cli.cli_idade"]);
-
-            cidade.Cid_nome = Convert.ToString(reader["cid.cid_nome"]);
-
-            tipo.Tpu_descricao = Convert.ToString(reader["tpu.tpu_descricao"]);
-
-            plano.Pla_nome = Convert.ToString(reader["pla.pla_nome"]);
-            plano.Pla_qtd_dias = Convert.ToInt32(reader["pla_qtd_dias"]);
-
-
-            usuario.Usu_login = Convert.ToString(reader["usu.usu_login"]);
-            usuario.Usu_senha = Convert.ToString(reader["usu.usu_senha"]);
-
-            usuario.Cid_id = cidade;
-            usuario.Tpu_id = tipo;
-
-            cli.Usu_id = usuario;
-
-            controle.Pla_id = plano;
-  
-            clifinal.Cli_id = cli;
-
-            clifinal.Ctr_id = controle;
-
-
-
-            clientes.Add(clifinal);
-
-        }
+        objDataAdapter = Mapped.Adapter(objComando);
+        objDataAdapter.Fill(ds);
         objConexao.Close();
         objConexao.Dispose();
-        objCommando.Dispose();
-        reader.Dispose();
-        return clientes;
+        objComando.Dispose();
+        return ds;
     }
 
 

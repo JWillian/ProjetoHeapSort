@@ -96,9 +96,10 @@
                         <asp:BoundField DataField="cli_idade" HeaderText="Idade" />
                         <asp:BoundField DataField="cid_nome" HeaderText="Cidade" />
                         <asp:BoundField DataField="tpu_descricao" HeaderText="Tipo de Usuário" />
-                        <asp:BoundField DataField="usu_login" HeaderText="Login" />
                         <asp:boundfield datafield="pla_nome" headertext="plano" />
                         <asp:boundfield datafield="pla_qtd_dias" headertext="qtd de dias" />
+                        <asp:BoundField DataField="usu_login" HeaderText="Login" />
+                        <asp:BoundField DataField="usu_senha" HeaderText="Senha" />
                         
                     </Columns>
                 </asp:GridView>

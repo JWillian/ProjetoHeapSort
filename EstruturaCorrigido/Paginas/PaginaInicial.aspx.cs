@@ -138,7 +138,7 @@ public partial class Paginas_Default : System.Web.UI.Page
 
     private void CarregarGridCliente()
     {
-        DataSet ds = cli_clienteDB.SelectGrid();
+        DataSet ds = cli_clientefinalDB.SelectClienteAll();
 
         GridView.DataSource = ds.Tables[0].DefaultView;
 

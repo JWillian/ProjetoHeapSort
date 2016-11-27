@@ -13,9 +13,6 @@ public partial class Paginas_Aterar : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-
-
-
             DataSet dsCidade = cid_cidadeDB.SelectAll();
             //Carrega as cidades do banco na Drop Down Cidade
             ddlCidade.DataSource = dsCidade;
