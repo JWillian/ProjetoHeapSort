@@ -38,7 +38,7 @@ public class cli_clientefinalDB
         "usu.usu_senha " +
         "from usu_usuario usu " +
         "inner join cli_cliente cli on(cli.usu_id = usu.usu_id) " +
-        "inner join ctr_controle ctr on(usu.usu_id = ctr.ctr_id) " +
+        "inner join ctr_controle ctr on(usu.usu_id = ctr.usu_id) " +
         "inner join pla_plano pla on(pla.pla_id = ctr.pla_id) " +
         "inner join tpu_tipo_usuario tpu on(tpu.tpu_id = usu.tpu_id) " +
         "inner join cid_cidade cid on(cid.cid_id = usu.cid_id); ", objConexao);

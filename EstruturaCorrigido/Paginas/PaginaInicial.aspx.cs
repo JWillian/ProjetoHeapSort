@@ -66,6 +66,7 @@ public partial class Paginas_Default : System.Web.UI.Page
         cidade.Cid_id = Convert.ToInt32(ddlCidade.SelectedValue);
 
         pla_plano plano = new pla_plano();
+        plano.Pla_id = Convert.ToInt32(ddlPlano.SelectedIndex);
         plano.Pla_nome = Convert.ToString(ddlPlano.SelectedValue);
         plano.Pla_qtd_dias = Convert.ToInt32(txtQtdDias.Text);
 
@@ -83,6 +84,14 @@ public partial class Paginas_Default : System.Web.UI.Page
         cliente.Cli_cpf = txtCPF.Text;
         cliente.Cli_idade = Convert.ToInt32(txtIdade.Text);
         cliente.Usu_id = usuario;
+
+        ctr_controle controle = new ctr_controle();
+        controle.Pla_id = plano;
+        controle.Usu_id = usuario;
+        controle.Ctr_data_termino = txtQtdDias.Text;
+        ctr_controleDB.Insert(controle);
+
+
         if (cli_clienteDB.Insert(cliente) == 0)
         {
             Response.Write("<script>alert('Cadastrado com sucesso')</script>");
