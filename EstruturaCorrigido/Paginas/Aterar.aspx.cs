@@ -79,15 +79,15 @@ public partial class Paginas_Aterar : System.Web.UI.Page
         }
         else
         {
-            txtNome.Text = ds.Tables[0].Rows[0]["cli_nome"].ToString();
-            txtEmail.Text = ds.Tables[0].Rows[0]["cli_email"].ToString();
-            txtIdade.Text = ds.Tables[0].Rows[0]["cli_idade"].ToString();
-            ddlCidade.DataValueField = ds.Tables[0].Rows[0]["cid_id"].ToString();
-            ddlTipoUsuario.DataValueField = ds.Tables[0].Rows[0]["tpu_id"].ToString();
-            ddlPlano.DataValueField = ds.Tables[0].Rows[0]["pla_id"].ToString();
-            txtQtdDias.Text = ds.Tables[0].Rows[0]["pla_qtd_dias"].ToString();
-            txtLogin.Text = ds.Tables[0].Rows[0]["usu_login"].ToString();
-            txtSenha.Text = ds.Tables[0].Rows[0]["usu_senha"].ToString();
+            txtNome.Text = ds.Tables[0].Rows[0]["cli.cli_nome"].ToString();
+            txtEmail.Text = ds.Tables[0].Rows[0]["cli.cli_email"].ToString();
+            txtIdade.Text = ds.Tables[0].Rows[0]["cli.cli_idade"].ToString();
+            ddlCidade.DataValueField = ds.Tables[0].Rows[0]["cid.cid_id"].ToString();
+            ddlTipoUsuario.DataValueField = ds.Tables[0].Rows[0]["tpu.tpu_id"].ToString();
+            ddlPlano.DataValueField = ds.Tables[0].Rows[0]["pla.pla_id"].ToString();
+            txtQtdDias.Text = ds.Tables[0].Rows[0]["pla.pla_qtd_dias"].ToString();
+            txtLogin.Text = ds.Tables[0].Rows[0]["usu.usu_login"].ToString();
+            txtSenha.Text = ds.Tables[0].Rows[0]["usu.usu_senha"].ToString();
         }
 
     }
@@ -102,7 +102,7 @@ public partial class Paginas_Aterar : System.Web.UI.Page
         usu_usuario usu = new usu_usuario();
         tpu_tipo_usuario tpu = new tpu_tipo_usuario();
 
-        cli.Cli_id = 1;
+        cli.Cli_id = Convert.ToInt32(ddlCpf.SelectedValue);
         cli.Cli_nome = txtNome.Text;
         cli.Cli_email = txtEmail.Text;
         cli.Cli_cpf = ddlCpf.SelectedValue;
